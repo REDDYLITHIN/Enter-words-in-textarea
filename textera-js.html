@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Textarea Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AVULA LITHIN REDDY</h1>
+    <textarea id="wordInput" placeholder="Type your words here..."></textarea>
+    <button onclick="saveFile()">Save to File</button>
+    <button onclick="resetTextarea()">RESET</button>
+
+    <script>
+        function saveFile() {
+            const text = document.getElementById('wordInput').value;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'your_words.txt'; 
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function resetTextarea() {
+            document.getElementById('wordInput').value = '';
+        }
+    </script>
+
+</body>
+</html>
